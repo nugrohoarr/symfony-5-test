@@ -28,6 +28,7 @@
               <thead>
                   <tr>
                       <th>Id</th>
+                      <th>Barang</th>
                       <th>Tgl Keluar</th>
                       <th>Jml Keluar</th>
                       <th>Deskripsi</th>
@@ -38,6 +39,7 @@
               {% for barang_keluar in barang_keluars %}
                   <tr>
                       <td>{{ barang_keluar.id_keluar }}</td>
+                      <td>{{ barang_keluar.nama_barang }}</td>
                       <td>{{ barang_keluar.tgl_keluar ? barang_keluar.tgl_keluar|date('Y-m-d') : '' }}</td>
                       <td>{{ barang_keluar.jml_keluar }}</td>
                       <td>{{ barang_keluar.deskripsi }}</td>

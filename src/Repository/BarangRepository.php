@@ -21,6 +21,31 @@ class BarangRepository extends ServiceEntityRepository
         parent::__construct($registry, Barang::class);
     }
 
+    public function findDashboardData()
+    {
+      $conn = $this->getEntityManager()->getConnection();
+
+      $sql = '
+          SELECT 
+              *
+          FROM
+              stok
+      ';
+
+      $stmt = $conn->prepare($sql);
+      $resultSet = $stmt->executeQuery();
+
+      return $resultSet->fetchAllAssociative();
+    }
+
+    public function countAllBarang(): int
+    {
+        return (int)$this->createQueryBuilder('b')
+            ->select('COUNT(b.id_barang)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
     public function add(Barang $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
