@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BarangKeluar index{% endblock %}
+
+{% block body %}
+<div class="section-header">
+  <h1>Barang Keluar List</h1>
+</div>
+
+<div class="section-body">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>Data Barang Keluar</h4>
+          <div class="card-header-action">
+            <a href="{{ path('app_barang_keluar_new') }}"
+              >
+              <button class="btn btn-lg btn-info" type="button">
+                <i class="fas fa-plus"></i> Tambah Baru
+              </button></a
+            >
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped" id="table-1">
+              <thead>
+                  <tr>
+                      <th>Id</th>
+                      <th>Tgl Keluar</th>
+                      <th>Jml Keluar</th>
+                      <th>Deskripsi</th>
+                      <th>actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+              {% for barang_keluar in barang_keluars %}
+                  <tr>
+                      <td>{{ barang_keluar.id_keluar }}</td>
+                      <td>{{ barang_keluar.tgl_keluar ? barang_keluar.tgl_keluar|date('Y-m-d') : '' }}</td>
+                      <td>{{ barang_keluar.jml_keluar }}</td>
+                      <td>{{ barang_keluar.deskripsi }}</td>
+                      <td>
+                          <a href="{{ path('app_barang_keluar_show', {'id': barang_keluar.id_keluar}) }}" class="btn btn-warning btn-action mr-1" data-toggle="tooltip" title="Lihat Detail"><i class="fas fa-eye"></i></a>
+                          <a
+                            href="{{ path('app_barang_keluar_edit', {'id': barang_keluar.id_keluar}) }}"
+                            class="btn btn-primary btn-action mr-1"
+                            data-toggle="tooltip"
+                            title="Edit"
+                          >
+                            <i class="fas fa-pencil-alt"></i>
+                          </a>
+                      </td>
+                  </tr>
+              {% else %}
+                  <tr>
+                      <td colspan="5">no records found</td>
+                  </tr>
+              {% endfor %}
+              </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

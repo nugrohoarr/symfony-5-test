@@ -17,7 +17,7 @@ class BarangMasuk
     #[ORM\JoinColumn(name: "id_barang", referencedColumnName:"id_barang")]
     private Barang $barang;
 
-    #[ORM\Column(type: 'date')]
+    #[ORM\Column(type: 'date', nullable: true)]
     private $tglMasuk;
 
     #[ORM\Column(type: 'text')]
@@ -51,7 +51,7 @@ class BarangMasuk
         return $this->tglMasuk;
     }
 
-    public function setTglMasuk(\DateTimeInterface $tglMasuk): self
+    public function setTglMasuk(?\DateTimeInterface $tglMasuk): self
     {
         $this->tglMasuk = $tglMasuk;
 

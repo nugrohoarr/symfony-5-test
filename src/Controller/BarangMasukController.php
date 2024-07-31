@@ -25,6 +25,9 @@ class BarangMasukController extends AbstractController
     public function new(Request $request, BarangMasukRepository $barangMasukRepository): Response
     {
         $barangMasuk = new BarangMasuk();
+        // Set default date
+        $barangMasuk->setTglMasuk(new \DateTime());
+
         $form = $this->createForm(BarangMasukType::class, $barangMasuk);
         $form->handleRequest($request);
 
