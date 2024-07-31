@@ -3,36 +3,36 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Nama</th>
-                <td>{{ user.nama }}</td>
-            </tr>
-            <tr>
-                <th>Username</th>
-                <td>{{ user.username }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>Level</th>
-                <td>{{ user.level }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_user_index') }}">back to list</a>
-
-    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
-
-    {{ include('user/_delete_form.html.twig') }}
+<div class="section-header">
+  <h1>Detail User</h1>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      
+    <div class="card">
+    <div class="card-header">
+    </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label>Nama</label>
+              <p>{{ user.nama }}</p>
+            </div>
+            <div class="form-group">
+              <label>username</label>
+              <p>{{ user.username }}</p>
+            </div>
+            <div class="form-group">
+              <label>level</label>
+              <p>{{ user.level }}</p>
+            </div>
+          </div>
+          <div class="col-sm-12">
+              {{ include('user/_delete_form.html.twig') }}
+          </div>
+        </div>
+      </div>  
+</div>
 {% endblock %}
