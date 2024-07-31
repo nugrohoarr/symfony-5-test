@@ -11,14 +11,14 @@ class Barang
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private $idBarang;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $namaBarang;
 
     public function getId(): ?int
     {
-        return $this->id;
+        return $this->idBarang;
     }
 
     public function getNamaBarang(): ?string
