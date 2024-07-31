@@ -2,27 +2,28 @@
 
 namespace App\Form;
 
-use App\Entity\Project;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
-class ProjectType extends AbstractType
+class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('description')
-            ->add('created_at')
-            ->add('updated_at')
+            ->add('nama')
+            ->add('username')
+            ->add('password', PasswordType::class)
+            ->add('level')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Project::class,
+            'data_class' => User::class,
         ]);
     }
 }

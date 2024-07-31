@@ -1,21 +1,116 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        {% endblock %}
- 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>{% block title %}Inventaris{% endblock %}</title>
+
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/modules/fontawesome/css/all.min.css') }}">
+
+  <!-- CSS Libraries -->
+  <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/modules/select2/dist/css/select2.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/modules/datatables/Select-1.2.4/css/select.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.css') }}">
+
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
+</head>
+<body>
+  <div id="app">
+    <div class="main-wrapper main-wrapper-1">
+      <div class="navbar-bg"></div>
+      <nav class="navbar navbar-expand-lg main-navbar">
+        <ul class="navbar-nav mr-3">
+          <li><a href="#" data-toggle="sidebar" class="nav-link nav-link d-lg-none"><i class="fas fa-bars"></i></a></li>
+        </ul>
+        <a class="navbar-brand text-right" href="">
+          Kafe Kopi Kampung Ambarukmo Yogyakarta
+        </a>
+      </nav>
+
+      <div class="main-sidebar sidebar-style-2">
+        <aside id="sidebar-wrapper">
+          <div class="sidebar-brand">
+            <a><img src="{{ asset('assets/images/logo.png') }}" style="width: 30px;"> Inventaris</a>
+          </div>
+          <ul class="sidebar-menu">
+            <li class="dropdown">
+              {# <a href="#" class="nav-link has-dropdown"><i class="fas fa-user text-danger"></i><span>Hai, {{ app.user.nama }}</span></a> #}
+              <ul class="dropdown-menu">
+                {# <li><a class="nav-link text-danger" href="{{ path('app_logout') }}" onclick="return confirm('Yakin ingin Logout?')"><i class="fas fa-sign-out-alt"></i> Logout</a></li> #}
+              </ul>
+            </li>
+            {# <li class="menu-header"><b>{{ app.user.level }}</b></li> #}
+            <li>
+              {# <a href="{{ path('app_home') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a> #}
+            </li>
+
+            {# {% if app.user.level == 'administrator' %} #}
+              <li><a href="{{ path('app_user_index') }}" class="nav-link"><i class="fas fa-user"></i><span>Data User</span></a></li>
+              <li class="menu-header"><b>Manajemen Barang</b></li>
+              {# <li><a class="nav-link" href="{{ path('barang_index') }}"><i class="fas fa-archive"></i> <span>Data Barang</span></a></li>
+              <li><a class="nav-link" href="{{ path('barang_masuk_index') }}"><i class="fas fa-download"></i> <span>Barang Masuk</span></a></li>
+              <li><a class="nav-link" href="{{ path('barang_keluar_index') }}"><i class="fas fa-upload"></i> <span>Barang Keluar</span></a></li> #}
+            {# {% endif %} #}
+
+            {# {% if app.user.level == 'manajemen' %} #}
+              <li class="menu-header"><b>Manajemen Barang</b></li>
+              {# <li><a class="nav-link" href="{{ path('barang_index') }}"><i class="fas fa-user"></i><span>Data Barang</span></a></li>
+              <li><a class="nav-link" href="{{ path('barang_masuk_index') }}"><i class="fas fa-download"></i> <span>Barang Masuk</span></a></li>
+              <li><a class="nav-link" href="{{ path('barang_keluar_index') }}"><i class="fas fa-upload"></i> <span>Barang Keluar</span></a></li> #}
+            {# {% endif %} #}
+          </ul>
+
+          <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
+            {# <a href="{{ path('app_logout') }}" class="btn btn-danger btn-lg btn-block btn-icon-split" onclick="return confirm('Yakin ingin Logout?')">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </a> #}
+          </div>
+        </aside>
+      </div>
+
+      <div class="main-content">
+        <section class="section">
+          {% block body %}{% endblock %}
+        </section>
+      </div>
+      
+      <footer class="main-footer">
+        <div class="footer-left">
+          Copyright &copy; 2024 <div class="bullet"></div> By Kafe Kopi Kampung Ambarukmo Yogyakarta
+        </div>
+        <div class="footer-right"></div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- General JS Scripts -->
+  <script src="{{ asset('assets/modules/jquery.min.js') }}"></script>
+  <script src="{{ asset('assets/modules/popper.js') }}"></script>
+  <script src="{{ asset('assets/modules/tooltip.js') }}"></script>
+  <script src="{{ asset('assets/modules/bootstrap/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
+  <script src="{{ asset('assets/modules/moment.min.js') }}"></script>
+  <script src="{{ asset('assets/js/stisla.js') }}"></script>
+
+  <!-- JS Libraies -->
+  <script src="{{ asset('assets/modules/datatables/datatables.min.js') }}"></script>
+  <script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
+  <script src="{{ asset('assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js') }}"></script>
+  <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
+  <script src="{{ asset('assets/modules/jquery-ui/jquery-ui.min.js') }}"></script>
+  <script src="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+
+  <!-- Page Specific JS File -->
+  <script src="{{ asset('assets/js/page/modules-datatables.js') }}"></script>
+
+  <!-- Template JS File -->
+  <script src="{{ asset('assets/js/scripts.js') }}"></script>
+  <script src="{{ asset('assets/js/custom.js') }}"></script>
+</body>
 </html>
