@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BarangMasuk{% endblock %}
+
+{% block body %}
+<div class="section-header">
+  <h1>Detail Barang Masuk</h1>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      
+    <div class="card">
+    <div class="card-header">
+    <h4 class="text-uppercase">{{ barang_masuk.barang.namaBarang }}</h4>
+    </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label>Nama Barang</label>
+              <p>{{ barang_masuk.barang.namaBarang }}</p>
+            </div>
+            <div class="form-group">
+              <label>Spesifikasi</label>
+              <p>{{ barang_masuk.spesifikasi }}</p>
+            </div>
+            <div class="form-group">
+              <label>Jumlah Masuk</label>
+              <p>{{ barang_masuk.jmlMasuk }}</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label>Tanggal Masuk</label>
+              <p>{{ barang_masuk.tglMasuk ? barang_masuk.tglMasuk|date('Y-m-d') : '' }}</p>
+            </div>
+            <div class="form-group">
+              <label>Kondisi</label>
+              <p>{{ barang_masuk.kondisi }}</p>
+            </div>
+          </div>
+          <div class="col-sm-12">
+              {{ include('barang_masuk/_delete_form.html.twig') }}
+          </div>
+        </div>
+      </div>  
+</div>
+
+    {# <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ barang_masuk.id }}</td>
+            </tr>
+            <tr>
+                <th>Barang</th>
+                <td>{{ barang_masuk.barang.idBarang }}. {{ barang_masuk.barang.namaBarang }}</td>
+            </tr>
+            <tr>
+                <th>TglMasuk</th>
+                <td>{{ barang_masuk.tglMasuk ? barang_masuk.tglMasuk|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Spesifikasi</th>
+                <td>{{ barang_masuk.spesifikasi }}</td>
+            </tr>
+            <tr>
+                <th>JmlMasuk</th>
+                <td>{{ barang_masuk.jmlMasuk }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {{ include('barang_masuk/_delete_form.html.twig') }} #}
+{% endblock %}

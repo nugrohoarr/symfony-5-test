@@ -1,0 +1,56 @@
+{% block body %}
+<div class="section-header">
+    <h1>{{ form.vars.value.id ? 'Edit Barang' : 'Tambah Barang' }}</h1>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>{{ form.vars.value.id ? 'Edit Barang' : 'Tambah Barang' }}</h4>
+            </div>
+            <div class="card-body">
+                {{ form_start(form) }}
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">{{ message }}</div>
+                {% endfor %}
+                {% for message in app.flashes('error') %}
+                    <div class="alert alert-danger">{{ message }}</div>
+                {% endfor %}
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Barang</label>
+                            {{ form_widget(form.barang) }}
+                        </div>
+                        <div class="form-group">
+                            <label>Spesifikasi</label>
+                            {{ form_widget(form.spesifikasi, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Kondisi</label>
+                            {{ form_widget(form.kondisi, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah Masuk</label>
+                            {{ form_widget(form.jml_masuk, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="form-group text-right">
+                            <button class="btn btn-info mr-1" type="submit">Simpan</button>
+                            <a href="{{ path('app_barang_index') }}"><button type="button" class="btn btn-danger" name="batal">Kembali</button></a>
+                        </div>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{# {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }} #}

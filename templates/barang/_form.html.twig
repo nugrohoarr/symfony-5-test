@@ -1,12 +1,12 @@
 {% block body %}
 <div class="section-header">
-    <h1>{{ form.vars.value.id ? 'Edit barang' : 'Tambah barang' }}</h1>
+    <h1>{{ form.vars.value.idBarang ? 'Edit barang' : 'Tambah barang' }}</h1>
 </div>
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4>{{ form.vars.value.id ? 'Edit barang' : 'Tambah barang' }}</h4>
+                <h4>{{ form.vars.value.idBarang ? 'Edit barang' : 'Tambah barang' }}</h4>
             </div>
             <div class="card-body">
                 {{ form_start(form) }}

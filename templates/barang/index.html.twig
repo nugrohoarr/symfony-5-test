@@ -34,20 +34,20 @@
               <tbody>
                 {% for barang in barangs %}
                 <tr>
-                  <td class="text-center">{{ barang.id }}</td>
+                  <td class="text-center">{{ barang.idBarang }}</td>
                   <td>
                     <span class="text-uppercase">{{ barang.namaBarang }}</span>
                     <div class="table-links">
-                      <a href="{{ path('app_barang_edit', { id: barang.id }) }}"
+                      <a href="{{ path('app_barang_edit', { id: barang.idBarang }) }}"
                         ><span class="badge badge-primary"
                           >Edit <i class="fas fa-pencil-alt"></i></span
                       ></a>
                     </div>
                   </td>
-                  <td class="text-center" style="display: none;">{{ barang.id }}</td>
+                  <td class="text-center" style="display: none;">{{ barang.idBarang }}</td>
                   <td>
                     <a
-                      href="{{ path('app_barang_edit', { id: barang.id }) }}"
+                      href="{{ path('app_barang_edit', { id: barang.idBarang }) }}"
                       class="btn btn-primary btn-action mr-1"
                       data-toggle="tooltip"
                       title="Edit"

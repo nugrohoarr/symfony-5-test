@@ -10,11 +10,12 @@ class BarangMasuk
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private $id;
+    #[ORM\Column(name: 'id_masuk', type: 'integer')]
+    private $id_masuk;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $barang;
+    #[ORM\ManyToOne(targetEntity: Barang::class, inversedBy: "barangMasuks")]
+    #[ORM\JoinColumn(name: "id_barang", referencedColumnName:"id_barang")]
+    private Barang $barang;
 
     #[ORM\Column(type: 'date')]
     private $tglMasuk;
@@ -22,20 +23,23 @@ class BarangMasuk
     #[ORM\Column(type: 'text')]
     private $spesifikasi;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $kondisi;
+
     #[ORM\Column(type: 'integer')]
     private $jmlMasuk;
 
     public function getId(): ?int
     {
-        return $this->id;
+        return $this->id_masuk;
     }
 
-    public function getBarang(): ?string
+    public function getBarang(): ?Barang
     {
         return $this->barang;
     }
 
-    public function setBarang(string $barang): self
+    public function setBarang(Barang $barang): self
     {
         $this->barang = $barang;
 
@@ -62,6 +66,18 @@ class BarangMasuk
     public function setSpesifikasi(string $spesifikasi): self
     {
         $this->spesifikasi = $spesifikasi;
+
+        return $this;
+    }
+
+    public function getKondisi(): ?string
+    {
+        return $this->kondisi;
+    }
+
+    public function setKondisi(string $kondisi): self
+    {
+        $this->kondisi = $kondisi;
 
         return $this;
     }

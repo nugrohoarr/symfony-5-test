@@ -10,7 +10,7 @@ class User
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(name: 'id_user', type: 'integer')]
     private $id_user;
 
     #[ORM\Column(type: 'string', length: 100)]
