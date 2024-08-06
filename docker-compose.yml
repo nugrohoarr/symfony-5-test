@@ -1,0 +1,45 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: symfony-app
+    container_name: symfony-app
+    restart: unless-stopped
+    working_dir: /var/www/symfony
+    volumes:
+      - ./:/var/www/symfony
+    ports:
+      - "8000:8000"
+    networks:
+      - symfony
+    command: php -S 0.0.0.0:8000 -t public/
+    depends_on:
+      - symfonydb
+    environment:
+      DATABASE_URL: "mysql://root:root@symfonydb:3306/inventaris-symfony?serverVersion=mariadb-10.4.22"
+
+  symfonydb:
+    image: mariadb:10.4.22
+    container_name: symfony-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: inventaris-symfony
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./inventaris_skripsi.sql:/docker-entrypoint-initdb.d/inventaris_skripsi.sql
+    ports:
+      - "3307:3306"
+    networks:
+      - symfony
+
+networks:
+  symfony:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
