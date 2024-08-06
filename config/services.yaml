@@ -22,3 +22,14 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    App\EventListener.TemplateListener:
+        class: App\EventListener\TemplateListener
+        arguments:
+            $session: '@session'
+            $twig: '@twig'
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
+            
+    App\EventListener\SessionListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }

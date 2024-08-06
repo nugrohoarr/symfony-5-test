@@ -40,36 +40,42 @@
           </div>
           <ul class="sidebar-menu">
             <li class="dropdown">
-              {# <a href="#" class="nav-link has-dropdown"><i class="fas fa-user text-danger"></i><span>Hai, {{ app.user.nama }}</span></a> #}
+            {% if app_user %}
+              <a href="#" class="nav-link has-dropdown">
+                <i class="fas fa-user text-danger"></i><span>Hai, {{ app_user.username }}</span>
+              </a>
+            {% endif %}
               <ul class="dropdown-menu">
-                {# <li><a class="nav-link text-danger" href="{{ path('app_logout') }}" onclick="return confirm('Yakin ingin Logout?')"><i class="fas fa-sign-out-alt"></i> Logout</a></li> #}
+                <li><a class="nav-link text-danger" href="{{ path('logout') }}" onclick="return confirm('Yakin ingin Logout?')"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
               </ul>
             </li>
-            {# <li class="menu-header"><b>{{ app.user.level }}</b></li> #}
+            {% if app_user %}
+              <li class="menu-header"><b>{{ app_user.level }}</b></li>
+            {% endif %}
             <li>
               <a href="{{ path('dashboard') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
 
-            {# {% if app.user.level == 'administrator' %} #}
+            {% if app_user.level == 'administrator' %}
               <li><a href="{{ path('app_user_index') }}" class="nav-link"><i class="fas fa-user"></i><span>Data User</span></a></li>
               <li class="menu-header"><b>Manajemen Barang</b></li>
               <li><a class="nav-link" href="{{ path('app_barang_index') }}"><i class="fas fa-archive"></i> <span>Data Barang</span></a></li>
               <li><a class="nav-link" href="{{ path('app_barang_masuk_index') }}"><i class="fas fa-download"></i> <span>Barang Masuk</span></a></li>
               <li><a class="nav-link" href="{{ path('app_barang_keluar_index') }}"><i class="fas fa-upload"></i> <span>Barang Keluar</span></a></li>
-            {# {% endif %} #}
+            {% endif %}
 
-            {# {% if app.user.level == 'manajemen' %} #}
+            {% if app_user.level == 'manajemen' %}
               <li class="menu-header"><b>Manajemen Barang</b></li>
               <li><a class="nav-link" href="{{ path('app_barang_index') }}"><i class="fas fa-user"></i><span>Data Barang</span></a></li>
               <li><a class="nav-link" href="{{ path('app_barang_masuk_index') }}"><i class="fas fa-download"></i> <span>Barang Masuk</span></a></li>
               <li><a class="nav-link" href="{{ path('app_barang_keluar_index') }}"><i class="fas fa-upload"></i> <span>Barang Keluar</span></a></li>
-            {# {% endif %} #}
+            {% endif %}
           </ul>
 
           <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-            {# <a href="{{ path('app_logout') }}" class="btn btn-danger btn-lg btn-block btn-icon-split" onclick="return confirm('Yakin ingin Logout?')">
+            <a href="{{ path('logout') }}" class="btn btn-danger btn-lg btn-block btn-icon-split" onclick="return confirm('Yakin ingin Logout?')">
               <i class="fas fa-sign-out-alt"></i> Logout
-            </a> #}
+            </a>
           </div>
         </aside>
       </div>
